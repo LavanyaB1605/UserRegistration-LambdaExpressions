@@ -38,6 +38,16 @@ public class UserRegistration_Lambda {
             }
         };
 
+        UserRegistrationInterface mobileNumber = (String pattern, String mobile_number) -> {
+            if (Pattern.matches(pattern, mobile_number)) {
+                System.out.println("Entered Number is Valid");
+                return true;
+            }else {
+                System.out.println("Entered Number is Invalid");
+                return false;
+            }
+        };
+
         firstName.validate("^[A-Z][a-z]{2,}$", "Lavanya");
         firstName.validate("^[A-Z][a-z]{2,}$", "lavan");
 
@@ -47,6 +57,9 @@ public class UserRegistration_Lambda {
 
         emailID.validate("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$","lavanb23@gmail.com");
         emailID.validate("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$","abc.com");
+
+        mobileNumber.validate("[91]{2} [6-9]{1}[0-9]{9}", "91 9087654321");
+        mobileNumber.validate("^[9][1]{0,1}\\s[0-9]{10}", "91 546790");
 
     }
 }
