@@ -4,9 +4,7 @@ import java.util.regex.Pattern;
 interface UserRegistrationInterface {
     boolean validate(String pattern, String details);
 }
-
 public class UserRegistration_Lambda {
-
     public static void main(String[] args) {
         UserRegistrationInterface firstName = (String pattern, String first_name) -> {
             if (Pattern.matches(pattern, first_name)) {
@@ -18,6 +16,7 @@ public class UserRegistration_Lambda {
                 return false;
             }
         };
+
         UserRegistrationInterface lastName = (String pattern, String last_name) -> {
             if (Pattern.matches(pattern, last_name)) {
                 System.out.println("Entered Last Name is Valid");
@@ -48,6 +47,14 @@ public class UserRegistration_Lambda {
             }
         };
 
+        UserRegistrationInterface password = (String pattern, String pwd) -> {
+            if (Pattern.matches(pattern, pwd)) {
+                return true;
+            }else {
+                return false;
+            }
+        };
+
         firstName.validate("^[A-Z][a-z]{2,}$", "Lavanya");
         firstName.validate("^[A-Z][a-z]{2,}$", "lavan");
 
@@ -59,7 +66,13 @@ public class UserRegistration_Lambda {
         emailID.validate("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$","abc.com");
 
         mobileNumber.validate("[91]{2} [6-9]{1}[0-9]{9}", "91 9087654321");
-        mobileNumber.validate("^[9][1]{0,1}\\s[0-9]{10}", "91 546790");
+        mobileNumber.validate("[91]{2} [6-9]{1}[0-9]{9}", "91 546790");
+
+        System.out.println("Entered value is " + password.validate("[A-Z][a-z0-9]{7,}[$&+,:;=?@#|'<>.-^*()%!]","Lavanya07#"));
+        System.out.println("Entered value is " + password.validate("[A-Z][a-z0-9]{7,}[$&+,:;=?@#|'<>.-^*()%!]","lava16"));
+
+        /*password.validate("[A-Z][a-z0-9]{7,}[$&+,:;=?@#|'<>.-^*()%!]","Lavanya07#");
+        password.validate("[A-Z][a-z0-9]{7,}[$&+,:;=?@#|'<>.-^*()%!]","lava16");*/
 
     }
 }
