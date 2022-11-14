@@ -10,20 +10,30 @@ public class UserRegistration_Lambda {
     public static void main(String[] args) {
         UserRegistrationInterface firstName = (String pattern, String first_name) -> {
             if (Pattern.matches(pattern, first_name)) {
-                System.out.println("Entered Name is Valid");
+                System.out.println("Entered First Name is Valid");
                 return true;
 
             } else {
-                System.out.println("Entered Name is Invalid");
+                System.out.println("Entered First Name is Invalid");
                 return false;
             }
         };
         UserRegistrationInterface lastName = (String pattern, String last_name) -> {
             if (Pattern.matches(pattern, last_name)) {
-                System.out.println("Entered Name is Valid");
+                System.out.println("Entered Last Name is Valid");
                 return true;
             }else {
-                System.out.println("Entered Name is Invalid");
+                System.out.println("Entered Last Name is Invalid");
+                return false;
+            }
+        };
+
+        UserRegistrationInterface emailID = (String pattern, String email) -> {
+            if (Pattern.matches(pattern, email)) {
+                System.out.println("Entered ID is Valid");
+                return true;
+            }else {
+                System.out.println("Entered ID is Invalid");
                 return false;
             }
         };
@@ -34,6 +44,9 @@ public class UserRegistration_Lambda {
         lastName.validate("^[A-Z][a-z]{2,}$", "Bhaskaran");
         //System.out.println("Entered value is " + lastName.validate("^[A-Z][a-z]{2,}$", "Bhaskaran"));
         lastName.validate("^[A-Z][a-z]{2,}$", "bh");
+
+        emailID.validate("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$","lavanb23@gmail.com");
+        emailID.validate("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$","abc.com");
 
     }
 }
